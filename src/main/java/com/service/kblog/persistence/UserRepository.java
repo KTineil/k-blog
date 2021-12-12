@@ -9,4 +9,6 @@ import com.service.kblog.model.UserEntity;
 public interface UserRepository extends JpaRepository<UserEntity, String>{
 	
 	boolean existsByEmail(String email);
+	
+	boolean existsByEmailAndPassword(String email, String password);
 }

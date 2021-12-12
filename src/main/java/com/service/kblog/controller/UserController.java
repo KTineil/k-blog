@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.service.kblog.dto.UserDTO;
 import com.service.kblog.model.UserEntity;
@@ -37,7 +38,16 @@ public class UserController {
 	}
 	
 	@PostMapping("/signin")
-	public String loginServiceController() {
-		return "index";
+	public String loginServiceController(UserDTO userDTO) {
+		
+		boolean isUserExist = userService.existByCredentials(userDTO.getEmail(), userDTO.getPassword());
+		
+		if (isUserExist) {
+			return "index";
+		}
+		
+		else {
+			return "login";
+		}
 	}
 }
