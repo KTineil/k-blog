@@ -1,5 +1,24 @@
 spring:
- mvc:
-  view: 
-   prefix: /WEB-INF/views/
-   suffix: .jsp
+  # jsp 이해와 view 디렉토리 경로
+  mvc:
+    view: 
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+      
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: 'jdbc:mysql://localhost:3306/blog?characterEncoding=UTF-8&serverTimezone=Asia/Seoul'
+    username: blog
+    password: blog
+    
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    generate-ddl: true
+    show-sql: true
+    
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 80
