@@ -1,14 +1,18 @@
 package com.service.kblog.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.service.kblog.dto.UserDTO;
 import com.service.kblog.model.UserEntity;
+import com.service.kblog.security.TokenProvider;
 import com.service.kblog.service.UserService;
 
 @Controller
@@ -18,36 +22,56 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	TokenProvider tokenProvider;
+	
 	@GetMapping("/signup")
-	public String registPageController() {
-		return "register";
+	public ModelAndView registPage() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("regist");
+		return mav;
 	}
 	
 	@PostMapping("/signup")
-	public String registServiceController(UserDTO userDTO) {
+	public ModelAndView registService(UserDTO userDTO) {
 		
 		UserEntity userEntity = userDTO.toEntity();
 		userService.regist(userEntity);
 		
-		return "login";
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("login");
+		
+		return mav;
 	}
 	
 	@GetMapping("/signin")
-	public String loginPageController() {
-		return "login";
+	public ModelAndView loginPage() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("login");
+		return mav;
 	}
 	
 	@PostMapping("/signin")
-	public String loginServiceController(UserDTO userDTO) {
+	public ModelAndView loginService(UserDTO userDTO, HttpServletResponse response) {
 		
-		boolean isUserExist = userService.existByCredentials(userDTO.getEmail(), userDTO.getPassword());
+		UserEntity userEntity = userService.existByCredentials(userDTO.getEmail(), userDTO.getPassword());
 		
-		if (isUserExist) {
-			return "index";
+		ModelAndView mav = new ModelAndView();
+		if (userEntity != null) {
+			String token = tokenProvider.create(userEntity);
+			
+			Cookie tokenCookie = new Cookie("jwtToken", token);
+			tokenCookie.setMaxAge(60 * 60 * 24);
+			tokenCookie.setPath("/");
+			response.addCookie(tokenCookie);
+			
+			mav.setViewName("index");
 		}
 		
 		else {
-			return "login";
+			mav.setViewName("login");
 		}
+		
+		return mav;
 	}
 }

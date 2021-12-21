@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,6 +105,7 @@
 
           <div class="col-lg-8 entries">
 
+			<c:forEach var="p" items="posts">
             <article class="entry">
 
               <div class="entry-img">
@@ -108,13 +113,13 @@
               </div>
 
               <h2 class="entry-title">
-                <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
+                <a href="blog-single.html">${p.title}</a>
               </h2>
 
               <div class="entry-meta">
                 <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">${p.writer.name}</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2021-12-14">Jan 1, 2020</time></a></li>
                   <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
                 </ul>
               </div>
@@ -130,7 +135,9 @@
               </div>
 
             </article><!-- End blog entry -->
-
+			</c:forEach>
+			<!--
+			
             <article class="entry">
 
               <div class="entry-img">
@@ -159,7 +166,7 @@
                 </div>
               </div>
 
-            </article><!-- End blog entry -->
+            </article><!-- End blog entry
 
             <article class="entry">
 
@@ -189,7 +196,7 @@
                 </div>
               </div>
 
-            </article><!-- End blog entry -->
+            </article><!-- End blog entry
 
             <article class="entry">
 

@@ -37,6 +37,9 @@ dependencies {
 	
 	// 코드 변경시 자동 재시작 디펜던시
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	
+	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 }
 
 test {

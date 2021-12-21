@@ -30,7 +30,7 @@ public class UserService {
 		userRepository.save(userEntity);
 	}
 	
-	public boolean existByCredentials(final String email, final String password) {
-		return userRepository.existsByEmailAndPassword(email, password);
+	public UserEntity existByCredentials(final String email, final String password) {
+		return userRepository.findByEmailAndPassword(email, password);
 	}
 }
