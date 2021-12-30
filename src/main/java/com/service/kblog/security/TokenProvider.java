@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.service.kblog.model.UserEntity;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class TokenProvider {
 
-	private static final String SECRET_KEY = "KPP8hsIOnaJJ10";
+	private static final String SECRET_KEY = "KPP8hsIOnaJJ10"; // í…ŒìŠ¤íŠ¸ìš©
 	
 	public String create(UserEntity userEntity) {
 		Date expiryDate = Date.from(
@@ -24,10 +25,10 @@ public class TokenProvider {
 				.plus(1, ChronoUnit.DAYS));
 		
 		return Jwts.builder()
-				// Header¿¡ µé¾î°¥ ¾Ë°í¸®Áò°ú ÀüÀÚ ¼­¸í ½ÃÅ©¸´ Å°
+				// Headerï¿½ï¿½ ï¿½ï¿½î°¥ ï¿½Ë°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ Å°
 				.signWith(SignatureAlgorithm.HS512, SECRET_KEY)
 				
-				// Payload¿¡ µé¾î°¥ °ªµé
+				// Payloadï¿½ï¿½ ï¿½ï¿½î°¥ ï¿½ï¿½ï¿½ï¿½
 				.setSubject(userEntity.getId())
 				.setIssuer("KBros")
 				.setIssuedAt(new Date())
@@ -41,14 +42,23 @@ public class TokenProvider {
 		 * { // payload
 		 * 	"sub": userId
 		 * 	"iss":"KBros"
-		 * 	"iat": ÅäÅ« ¹ßÇà ½Ã°£
-		 * 	"exp": ÅäÅ« ¹ßÇà ½Ã°£À¸·ÎºÎÅÍ 1ÀÏ ÈÄ 
+		 * 	"iat": ï¿½ï¿½Å« ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+		 * 	"exp": ï¿½ï¿½Å« ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ 
 		 * }
 		 * { // signature
-		 * 	SECRET_KEY¸¦ ÀÌ¿ëÇØ À§ÀÇ Çì´õ¿Í ÆäÀÌ·Îµå¸¦ ÀüÀÚ¼­¸íÇÑ °ª
+		 * 	SECRET_KEYï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì·Îµå¸¦ ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 		 * }
 		 * 
 		 */
+	}
+	
+	public String validateAndGetUserId(String token) {
+		Claims claims = Jwts.parser()
+			.setSigningKey(SECRET_KEY)
+			.parseClaimsJwt(token)
+			.getBody();
+		
+		return claims.getSubject();
 	}
 	
 }

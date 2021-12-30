@@ -17,7 +17,7 @@ import com.service.kblog.service.UserService;
 
 @Controller
 @RequestMapping("/auth")
-public class UserController {
+public class AuthController {
 	
 	@Autowired
 	UserService userService;
