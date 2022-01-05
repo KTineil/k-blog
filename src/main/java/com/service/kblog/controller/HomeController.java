@@ -11,7 +11,7 @@ import com.service.kblog.dto.UserDTO;
 public class HomeController {
 	
 	@GetMapping()
-	public String indexController() {
+	public String indexPage() {
 		return "index";
 	}
 }

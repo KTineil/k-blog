@@ -43,7 +43,7 @@ public class TokenProvider {
 		 * 	"sub": userId
 		 * 	"iss":"KBros"
 		 * 	"iat": ��ū ���� �ð�
-		 * 	"exp": ��ū ���� �ð����κ��� 1�� �� 
+		 * 	"exp": ��ū ���� �ð����κ��� 1�� ��
 		 * }
 		 * { // signature
 		 * 	SECRET_KEY�� �̿��� ���� ����� ���̷ε带 ���ڼ����� ��

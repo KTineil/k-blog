@@ -27,9 +27,7 @@ public class AuthController {
 	
 	@GetMapping("/signup")
 	public ModelAndView registPage() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("regist");
-		return mav;
+		return new ModelAndView("regist");
 	}
 	
 	@PostMapping("/signup")
@@ -38,17 +36,12 @@ public class AuthController {
 		UserEntity userEntity = userDTO.toEntity();
 		userService.regist(userEntity);
 		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("login");
-		
-		return mav;
+		return new ModelAndView("login");
 	}
 	
 	@GetMapping("/signin")
 	public ModelAndView loginPage() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("login");
-		return mav;
+		return new ModelAndView("login");
 	}
 	
 	@PostMapping("/signin")
@@ -56,7 +49,7 @@ public class AuthController {
 		
 		UserEntity userEntity = userService.existByCredentials(userDTO.getEmail(), userDTO.getPassword());
 		
-		ModelAndView mav = new ModelAndView();
+		ModelAndView modelAndView = new ModelAndView();
 		if (userEntity != null) {
 			String token = tokenProvider.create(userEntity);
 			
@@ -65,13 +58,13 @@ public class AuthController {
 			tokenCookie.setPath("/");
 			response.addCookie(tokenCookie);
 			
-			mav.setViewName("index");
+			modelAndView.setViewName("index");
 		}
 		
 		else {
-			mav.setViewName("login");
+			modelAndView.setViewName("login");
 		}
 		
-		return mav;
+		return modelAndView;
 	}
 }

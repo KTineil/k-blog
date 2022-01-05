@@ -2,13 +2,14 @@ package com.service.kblog.controller;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.service.kblog.model.PostEntity;
@@ -27,7 +28,7 @@ public class TestController {
 	public String testController() {
 		
 		LocalDateTime now = LocalDateTime.now();
-		UserEntity userEntity = new UserEntity("ff8080817e14346e017e1438b4fa0000", "gurdnrnjs19@naver.com", "Í∂å", "ÌòÅÏö∞", "dngur19id@@", "M", "01065777824");
+		UserEntity userEntity = new UserEntity("2c9e818a7daedbed017daede6d0d0000", "gurdnrnjs19@gmail.com", "±««ıøÏ", "dngur19id@@", "M", "01065777824");
 		PostEntity entity = new PostEntity("1", userEntity, "title", "content", now, 1);
 		postRepository.save(entity);
 		
@@ -38,8 +39,7 @@ public class TestController {
 	public ModelAndView jspTestController() {
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("date", LocalDateTime.now().format(DateTimeFormatter.ofPattern("MMM, d yyyy").withLocale(Locale.forLanguageTag("en"))));
-		mav.addObject("origin", LocalDateTime.now());
+		mav.addObject("date", LocalDateTime.now());
 		mav.setViewName("/test");
 		
 		return mav;

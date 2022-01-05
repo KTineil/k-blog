@@ -2,7 +2,6 @@ package com.service.kblog.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -30,8 +29,8 @@ public class PostEntity {
 	private String id;
 
 	@ManyToOne
-	@JoinColumn(name = "userId") // »ı·« °¡´É -> ±âº» Àü·Â: ÇÊµå¸í + ÂüÁ¶ Å×ÀÌºíÀÇ ±âº» Å° ÄÃ·³¸í
-	private UserEntity userEntity;
+	@JoinColumn(name = "userId") // ìƒëµ ê°€ëŠ¥ -> ê¸°ë³¸ì „ëµ : í•„ë“œëª… + _ + ì°¸ì¡°í…Œì´ë¸” ê¸°ë³¸í‚¤ 
+	private UserEntity writer;
 	
 	private String title;
 	

@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = "email")})
 public class UserEntity {
 	
-	// ±âº» Á¤º¸
+	// ï¿½âº» ï¿½ï¿½ï¿½ï¿½
 	@Id
 	@GeneratedValue(generator = "system-uuid")
 	@GenericGenerator(name = "system-uuid", strategy = "uuid")
@@ -32,14 +32,16 @@ public class UserEntity {
 	
 	private String email;
 	
+	private String firstName;
+	
 	@NotNull
-	private String name;
+	private String lastName;
 	
 	@NotNull
 	@Column(length = 20)
 	private String password;
 	
-	// Ãß°¡ Á¤º¸
+	// ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@Column(columnDefinition = "char(1)")
 	private String gender;
 	
