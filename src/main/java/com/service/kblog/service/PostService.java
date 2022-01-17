@@ -23,8 +23,12 @@ public class PostService {
 	public LinkedList<PostEntity> retrieveList() {
 		
 		LinkedList<PostEntity> posts = postRepository.findAllWithLimit();
-		log.info(posts.get(0).getTitle());
-		
+		if (posts != null) {
+			log.info("found" + posts.size() + "posts");
+		}
+		else {
+			log.info("can't found any post");
+		}
 		return posts;
 	}
 	

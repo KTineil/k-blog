@@ -38,7 +38,7 @@ public class BlogController {
 		return modelAndView;
 	}
 	
-	@PostMapping("/post") 
+	@PostMapping("/post")
 	public ModelAndView create() {
 		return new ModelAndView("");
 	}
