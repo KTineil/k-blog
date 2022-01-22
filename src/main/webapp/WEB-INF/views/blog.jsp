@@ -51,12 +51,12 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto " href="/#hero">Home</a></li>
+          <li><a class="nav-link scrollto " href="/">Home</a></li>
           <li><a class="nav-link scrollto" href="/#about">About</a></li>
           <li><a class="nav-link scrollto" href="/#services">Services</a></li>
           <li><a class="nav-link scrollto " href="/#portfolio">Portfolio</a></li>
           <li><a class="nav-link scrollto" href="/#team">Team</a></li>
-          <li><a class="active" href="blog">Blog</a></li>
+          <li><a class="active" href="/blog">Blog</a></li>
           <li class="dropdown"><a href="#"><span>Authentication</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="/auth/signin">Login</a></li>
@@ -229,9 +229,14 @@
 
             <div class="blog-pagination">
               <ul class="justify-content-center">
-                <li><a href="#">1</a></li>
-                <li class="active"><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
+              	<c:forEach begin="${pageVO.startPageOfRange }" end="${pageVO.endPageOfRange }" varStatus="status">
+              	<c:if test="${pageVO.page == status.index }">
+    	            <li class="active"><a href="#">${status.index }</a></li>
+              	</c:if>
+              	<c:if test="${pageVO.page != status.index }">
+	                <li><a href="?page=${status.index }">${status.index }</a></li>
+              	</c:if>
+                </c:forEach>
               </ul>
             </div>
 

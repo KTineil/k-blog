@@ -11,6 +11,6 @@ import com.service.kblog.model.PostEntity;
 @Repository
 public interface PostRepository extends JpaRepository<PostEntity, String>{
 
-	@Query(nativeQuery = true, value = "select * from post order by created_date desc limit 5")
-	LinkedList<PostEntity> findAllWithLimit();
+	@Query(nativeQuery = true, value = "select * from post order by created_date desc limit ?1, 5")
+	LinkedList<PostEntity> findAllWithLimit(int limitStartIndex);
 }
