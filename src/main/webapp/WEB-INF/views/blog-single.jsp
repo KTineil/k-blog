@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,22 +14,22 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="bootstrap/img/favicon.png" rel="icon">
-  <link href="bootstrap/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="/bootstrap/img/favicon.png" rel="icon">
+  <link href="/bootstrap/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="bootstrap/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="bootstrap/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="bootstrap/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="bootstrap/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="bootstrap/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/bootstrap/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/bootstrap/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/bootstrap/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/bootstrap/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/bootstrap/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="bootstrap/css/style.css" rel="stylesheet">
+  <link href="/bootstrap/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Tempo - v4.7.0
@@ -47,12 +51,12 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto " href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto " href="/">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a class="active" href="blog.html">Blog</a></li>
+          <li><a class="active" href="/blog">Blog</a></li>
           <li class="dropdown"><a href="#"><span>Authentication</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="/auth/signin">Login</a></li>
@@ -85,11 +89,11 @@
       <div class="container">
 
         <ol>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li>Blog Single</li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li>Blog Detail</li>
         </ol>
-        <h2>Blog Single</h2>
+        <h2>Blog Detail</h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
@@ -109,55 +113,24 @@
               </div>
 
               <h2 class="entry-title">
-                <a href="blog-single.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
+                <a href="/blog/post/${post.id }">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
               </h2>
 
               <div class="entry-meta">
                 <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">John Doe</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
+                
+                  <fmt:parseDate value="${post.createdDate }" var="parsedDate" pattern="yyyy-MM-dd'T'HH:mm" type="both"></fmt:parseDate>
+                  <fmt:formatDate value="${parsedDate }" var="datetime" pattern="yyyy-MM-dd" type="date"/>
+                  <fmt:formatDate value="${parsedDate }" var="time" pattern="MMM dd, yyyy" type="date"/>
+                
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">${post.writer.firstName }${post.writer.lastName }</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="${datetime }">${time }</time></a></li>
                   <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
                 </ul>
               </div>
 
               <div class="entry-content">
-                <p>
-                  Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                  Et eveniet enim. Qui velit est ea dolorem doloremque deleniti aperiam unde soluta. Est cum et quod quos aut ut et sit sunt. Voluptate porro consequatur assumenda perferendis dolore.
-                </p>
-
-                <p>
-                  Sit repellat hic cupiditate hic ut nemo. Quis nihil sunt non reiciendis. Sequi in accusamus harum vel aspernatur. Excepturi numquam nihil cumque odio. Et voluptate cupiditate.
-                </p>
-
-                <blockquote>
-                  <p>
-                    Et vero doloremque tempore voluptatem ratione vel aut. Deleniti sunt animi aut. Aut eos aliquam doloribus minus autem quos.
-                  </p>
-                </blockquote>
-
-                <p>
-                  Sed quo laboriosam qui architecto. Occaecati repellendus omnis dicta inventore tempore provident voluptas mollitia aliquid. Id repellendus quia. Asperiores nihil magni dicta est suscipit perspiciatis. Voluptate ex rerum assumenda dolores nihil quaerat.
-                  Dolor porro tempora et quibusdam voluptas. Beatae aut at ad qui tempore corrupti velit quisquam rerum. Omnis dolorum exercitationem harum qui qui blanditiis neque.
-                  Iusto autem itaque. Repudiandae hic quae aspernatur ea neque qui. Architecto voluptatem magni. Vel magnam quod et tempora deleniti error rerum nihil tempora.
-                </p>
-
-                <h3>Et quae iure vel ut odit alias.</h3>
-                <p>
-                  Officiis animi maxime nulla quo et harum eum quis a. Sit hic in qui quos fugit ut rerum atque. Optio provident dolores atque voluptatem rem excepturi molestiae qui. Voluptatem laborum omnis ullam quibusdam perspiciatis nulla nostrum. Voluptatum est libero eum nesciunt aliquid qui.
-                  Quia et suscipit non sequi. Maxime sed odit. Beatae nesciunt nesciunt accusamus quia aut ratione aspernatur dolor. Sint harum eveniet dicta exercitationem minima. Exercitationem omnis asperiores natus aperiam dolor consequatur id ex sed. Quibusdam rerum dolores sint consequatur quidem ea.
-                  Beatae minima sunt libero soluta sapiente in rem assumenda. Et qui odit voluptatem. Cum quibusdam voluptatem voluptatem accusamus mollitia aut atque aut.
-                </p>
-                <img src="bootstrap/img/blog/blog-inside-post.jpg" class="img-fluid" alt="">
-
-                <h3>Ut repellat blanditiis est dolore sunt dolorum quae.</h3>
-                <p>
-                  Rerum ea est assumenda pariatur quasi et quam. Facilis nam porro amet nostrum. In assumenda quia quae a id praesentium. Quos deleniti libero sed occaecati aut porro autem. Consectetur sed excepturi sint non placeat quia repellat incidunt labore. Autem facilis hic dolorum dolores vel.
-                  Consectetur quasi id et optio praesentium aut asperiores eaque aut. Explicabo omnis quibusdam esse. Ex libero illum iusto totam et ut aut blanditiis. Veritatis numquam ut illum ut a quam vitae.
-                </p>
-                <p>
-                  Alias quia non aliquid. Eos et ea velit. Voluptatem maxime enim omnis ipsa voluptas incidunt. Nulla sit eaque mollitia nisi asperiores est veniam.
-                </p>
+                <p>${post.content }</p>
 
               </div>
 
@@ -482,14 +455,14 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="bootstrap/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="bootstrap/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="bootstrap/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="bootstrap/vendor/php-email-form/validate.js"></script>
+  <script src="/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/bootstrap/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/bootstrap/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/bootstrap/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/bootstrap/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="bootstrap/js/main.js"></script>
+  <script src="/bootstrap/js/main.js"></script>
 
 </body>
 

@@ -113,14 +113,20 @@
               </div>
 
               <h2 class="entry-title">
-                <a href="blog-single.html">${p.title }</a>
+                <a href="/blog/post/${p.id }">${p.title }</a>
               </h2>
 
               <div class="entry-meta">
                 <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">${p.writer.firstName} ${p.writer.lastName }</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2021-12-14">Jan 1, 2020</time></a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="/blog/post/${p.id }">${p.writer.firstName}${p.writer.lastName }</a></li>
+                  
+                  <fmt:parseDate value="${p.createdDate }" var="parsedDate" pattern="yyyy-MM-dd'T'HH:mm" type="both"></fmt:parseDate>
+                  <fmt:formatDate value="${parsedDate }" var="datetime" pattern="yyyy-MM-dd" type="date"/>
+                  <fmt:formatDate value="${parsedDate }" var="time" pattern="MMM dd, yyyy" type="date"/>
+                  
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="/blog/post/${p.id }"><time datetime="${datetime }">${time }</time></a></li>
+                  
+                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="/blog/post/${p.id }">12 Comments</a></li>
                 </ul>
               </div>
 
@@ -129,7 +135,7 @@
                   ${p.content }
                 </p>
                 <div class="read-more">
-                  <a href="blog-single.html">Read More</a>
+                  <a href="/blog/post/${p.id }">Read More</a>
                 </div>
               </div>
 

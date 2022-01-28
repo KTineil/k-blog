@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,13 +48,28 @@ public class BlogController {
 		return modelAndView;
 	}
 	
-	@PostMapping("/post")
-	public ModelAndView create() {
-		return new ModelAndView("");
+	@GetMapping("/post/{id}")
+	public ModelAndView retrieve(@PathVariable(value="id") final String pid) {
+		
+		try {
+			PostEntity postEntity = postService.retrieve(pid);
+			PostDTO postDTO = new PostDTO(postEntity);
+			
+			ModelAndView modelAndView = new ModelAndView();
+			
+			modelAndView.addObject("post", postDTO);
+			modelAndView.setViewName("blog-single");
+			
+			return modelAndView;
+		}
+		catch (Exception e) {
+			// 예외처리 
+			return new ModelAndView("error");
+		}
 	}
 	
-	@GetMapping("/post")
-	public ModelAndView retrieve() {
+	@PostMapping("/post")
+	public ModelAndView create() {
 		return new ModelAndView("");
 	}
 	

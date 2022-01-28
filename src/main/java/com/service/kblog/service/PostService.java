@@ -41,7 +41,16 @@ public class PostService {
 		
 	}
 	
-	public void retrieve() {
+	public PostEntity retrieve(String pid) {
+		
+		PostEntity postEntity = postRepository.findById(pid).get();
+		
+		if (postEntity == null) {
+			log.warn("Entity cannot found.");
+			throw new RuntimeException("Entity cannot found.");
+		}
+		
+		return postEntity;
 		
 	}
 	
