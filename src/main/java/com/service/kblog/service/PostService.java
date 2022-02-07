@@ -28,7 +28,7 @@ public class PostService {
 			log.info("found" + posts.size() + "posts");
 		}
 		else {
-			log.info("can't found any post");
+			log.warn("can't found any post");
 		}
 		return posts;
 	}
@@ -37,7 +37,15 @@ public class PostService {
 		return (int) postRepository.count();
 	}
 	
-	public void create() {
+	public void create(PostEntity postEntity) {
+		
+		if (postEntity != null) {
+			postRepository.save(postEntity);
+			log.info("complete to save");
+		}
+		else {
+			log.warn("Entity is null :(");
+		}
 		
 	}
 	
